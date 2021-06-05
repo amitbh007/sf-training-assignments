@@ -2,11 +2,11 @@
 
 ## How HTTPS works behind the scene?
 
-So http-s adds a layer of security over http protocol. We know that http follows a request-response mechanism ie if we want to go to a website say www.abc.com we first need to get the ip of the server where this site is hosted on ( DNS finds this info ) and after that an http get request is sent to the server ip, once server authorses the request it sends a response back. 
+So http-s adds a layer of security over http protocol. We know that http follows a request-response mechanism ie if we want to go to a website say www.abc.com we first need to get the ip of the server where this site is hosted on ( DNS finds this info ) and after that an http get request is sent to the server , once server authorises the request it sends a response back. 
 
-But its not like the http request travels directly from our pc to the server. There are several proxies that monitor and transmits our requests. So those proxies can tap into our requests pretty easily. That's where https comes in. 
+But its not like the http request travels directly from our pc to the server. There are several proxies and middlewares that monitor and transmit our requests. So those proxies can tap into our requests and access our info pretty easily. That's where https comes in. 
 
-So the same request when carried out by https becomes encrypted using the ssh key ( that we provide ) further there is also TLS ( Transport Security Layer ) protocol that helps to prevent the data transfer being modified.
+So the same request when carried out by https ( hyper text transfer protocol secure ) becomes encrypted using the ssh key and there is also TLS ( Transport Security Layer ) that helps to prevent the data transfer being modified or altred.
 
 <br />
 
