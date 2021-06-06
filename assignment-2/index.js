@@ -3,6 +3,7 @@ const ItemClass = "text-gray-900 whitespace-no-wrap"
 const titleClass = "px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider" 
 const buttonClass = "mx-1 bg-blue-700 py-1 px-3 my-2 rounded-full text-white hover:text-gray-500 text-sm"
 const inputClass = "box-content w-16 px-1 bg-blue-200 py-1 rounded-md"
+let users = [];
 
 //initial data fetching and setting
 $(document).ready(()=>{
@@ -18,11 +19,9 @@ $(document).ready(()=>{
             const finalData = await data.json();
             $("#loader").css("display","none");
             $("#loadBtn").html("Reload Data")
-            $("table").html(addRow({type:"title"}));
-            //load all data in table
-            finalData.forEach((e,i)=>{
-                $("table").append(`<tr id="row${i}">`+addRow({type:"data",e,i})+`</tr>`);
-            })
+            
+            users = finalData;
+            renderTable();
 
             //show the table
             $("table").css("display","block");
@@ -41,28 +40,14 @@ $(document).ready(()=>{
 })
 
 //button handlers
-
-let prevData = {};
-
 const handleEdit = (i)=>{
-    console.log("here");
-
     //saving previous data
-    prevData = {
-        firstName:$(`#fName${i}`).html(),
-        middleName:$(`#mName${i}`).html(),
-        lastName:$(`#lName${i}`).html(),
-        email:$(`#email${i}`).html(),
-        phone:$(`#phone${i}`).html(),
-        address:$(`#address${i}`).html()
-    }
-    $("table").find(`tr[id$="row${i}"]`).html(addRow({type:"input",e:prevData,i}));
-    
+    $("table").find(`tr[id$="row${i}"]`).html(addRow({type:"input",e:users[i],i}));
 }
 
 const handleDelete = (i)=>{
-    $("table").find(`tr[id$="row${i}"]`).html("");
-    prevData = {};
+    users.splice(i,1);
+    renderTable();
 }
 
 const handleSave = (i)=>{
@@ -76,17 +61,21 @@ const handleSave = (i)=>{
         phone:$(`#i_phone${i}`).val(),
         address:$(`#i_address${i}`).val()
     }
-    $("table").find(`tr[id$="row${i}"]`).html(addRow({type:"data",e,i}));
+
+    users[i] = e;
+    renderTable();
     
 }
 
-const handleCancel = (i)=>{
-    console.log("cancel clicked");
-    $("table").find(`tr[id$="row${i}"]`).html(addRow({type:"data",e:prevData,i}))
-    prevData = {}
-    
-}
+const handleCancel = (i)=> $("table").find(`tr[id$="row${i}"]`).html(addRow({type:"data",e:users[i],i}))    
 
+//render table
+const renderTable = ()=>{
+    $("table").html(addRow({type:"title"}));
+    users.forEach((e,i)=>{
+        $("table").append(`<tr id="row${i}">`+addRow({type:"data",e,i})+`</tr>`);
+    })
+}
 
 //content adder
 const addRow = ({type,e,i})=>{
