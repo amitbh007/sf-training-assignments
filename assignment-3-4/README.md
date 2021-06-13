@@ -22,6 +22,7 @@
 * async-await with fetch-api
 * jquery for DOM
 * Typescript instead of Javascript
+* Generics, Classes, Interfaces and Enums
 
 
 ## How to run
