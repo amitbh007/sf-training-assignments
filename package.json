@@ -1,0 +1,25 @@
+{
+  "name": "assignments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitbh007/sf-training-assignments.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amitbh007/sf-training-assignments/issues"
+  },
+  "homepage": "https://github.com/amitbh007/sf-training-assignments#readme",
+  "devDependencies": {
+    "@types/jquery": "^3.5.5"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}
